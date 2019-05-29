@@ -2,7 +2,7 @@
   <div class="container">
     <h2>Ramadhan sale! From 30% up to 85%!</h2>
     <div class="card-carousel-wrapper">
-      <div class="card-carousel--nav__left"/>
+      <div class="card-carousel--nav__left" @click="moveCarousel(-1)" :disabled="atHeadOfList"/>
 
       <CardItem v-for="product in discountedItems" :key="product.id">
         <template v-slot:itemName>
@@ -13,7 +13,7 @@
         </template>
       </CardItem>
 
-      <div class="card-carousel--nav__right"/>
+      <div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList"/>
     </div>
   </div>
 </template>
@@ -26,7 +26,10 @@ export default {
   },
   data() {
     return {
-      discountedItems: []
+      discountedItems: [],
+      currentOffset: 0,
+      windowSize: 5,
+      paginationFactor: 220
     };
   },
   filters: {
@@ -37,8 +40,30 @@ export default {
   created() {
     axios.get("https://jsonplaceholder.typicode.com/posts").then(response => {
       this.discountedItems = response.data;
-      this.discountedItems = this.discountedItems.slice(0, 5);
+      this.discountedItems = this.discountedItems.slice(0, 10);
     });
+  },
+  computed: {
+    atEndOfList() {
+      return (
+        this.currentOffset <=
+        this.paginationFactor *
+          -1 *
+          (this.discountedItems.length - this.windowSize)
+      );
+    },
+    atHeadOfList() {
+      return this.currentOffset === 0;
+    }
+  },
+  methods: {
+    moveCarousel(direction) {
+      if (direction === 1 && !this.atEndOfList) {
+        this.currentOffset -= this.paginationFactor;
+      } else if (direction === -1 && !this.atHeadOfList) {
+        this.currentOffset += this.paginationFactor;
+      }
+    }
   }
 };
 </script>
