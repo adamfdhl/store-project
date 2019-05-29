@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>Ramadhan sale! From 30% to 85%!</h2>
+    <h2>Ramadhan sale! From 30% up to 85%!</h2>
     <div class="items-container">
       <CardItem v-for="product in discountedItems" :key="product.id">
         <template v-slot:itemName>
@@ -38,10 +38,11 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .items-container {
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
 }
 </style>

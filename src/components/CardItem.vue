@@ -15,6 +15,7 @@ export default {};
   text-align: center;
   margin: 10px;
   cursor: pointer;
+  background-color: white;
   -webkit-box-shadow: 0px 10px 30px -12px rgba(0, 0, 0, 0.68);
   -moz-box-shadow: 0px 10px 30px -12px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 10px 30px -12px rgba(0, 0, 0, 0.68);
