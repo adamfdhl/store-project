@@ -1,8 +1,15 @@
 <template>
-  <div class="container"></div>
+  <div class="container">
+    <DiscountedItems/>
+  </div>
 </template>
 <script>
-export default {};
+import DiscountedItems from "../DiscountedItems.vue";
+export default {
+  components: {
+    DiscountedItems
+  }
+};
 </script>
 <style scoped>
 </style>
