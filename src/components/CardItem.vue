@@ -11,7 +11,8 @@ export default {};
 <style scoped>
 .card {
   border: 1px solid rgb(133, 131, 131);
-  max-width: 250px;
+  width: 250px;
+  height: 250px;
   text-align: center;
   margin: 10px;
   cursor: pointer;

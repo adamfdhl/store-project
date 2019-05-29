@@ -49,6 +49,12 @@ export default {
   justify-content: center;
   margin: 20px 0 40px;
   color: #666a73;
+}
+
+.card-carousel {
+  display: flex;
+  justify-content: center;
+  width: 640px;
 
   &--overflow-container {
     overflow: hidden;
