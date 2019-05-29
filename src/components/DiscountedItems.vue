@@ -4,14 +4,24 @@
     <div class="card-carousel-wrapper">
       <div class="card-carousel--nav__left" @click="moveCarousel(-1)" :disabled="atHeadOfList"/>
 
-      <CardItem v-for="product in discountedItems" :key="product.id">
-        <template v-slot:itemName>
-          <h3>{{ product.title }}</h3>
-        </template>
-        <template v-slot:itemDescription>
-          <p>{{ product.body | snippets }}</p>
-        </template>
-      </CardItem>
+      <div class="card-carousel">
+        <div class="card-carousel--overflow-container">
+          <div class="card-carousel-cards">
+            <CardItem
+              v-for="product in discountedItems"
+              :key="product.id"
+              class=".card-carousel--card"
+            >
+              <template v-slot:itemName>
+                <h3>{{ product.title }}</h3>
+              </template>
+              <template v-slot:itemDescription>
+                <p>{{ product.body | snippets }}</p>
+              </template>
+            </CardItem>
+          </div>
+        </div>
+      </div>
 
       <div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList"/>
     </div>
@@ -28,7 +38,7 @@ export default {
     return {
       discountedItems: [],
       currentOffset: 0,
-      windowSize: 5,
+      windowSize: 3,
       paginationFactor: 220
     };
   },
@@ -114,6 +124,21 @@ export default {
     transform: rotate(45deg);
     &:active {
       transform: rotate(45deg) scale(0.9);
+    }
+  }
+}
+
+.card-carousel-cards {
+  display: flex;
+  transition: transform 150ms ease-out;
+  transform: translateX(0px);
+
+  .card-carousel--card {
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
     }
   }
 }
